@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  nginx-extra:
+    image: ghcr.io/aasaam/nginx-extra:latest
+    container_name: nginx-extra
+    hostname: nginx-extra
+    network_mode: host

@@ -36,7 +36,7 @@ jobs:
 
       - shell: bash
         run: |
-          apt install jq curl -y
+          sudo apt install jq curl -y
           make
           find nginx -type f -name '.gitignore' -delete
 

@@ -21,11 +21,7 @@
   </p>
 </div>
 
-## Usage
-
-```bash
-docker-compose up -d
-```
+For OSS we using free version of [maxmind](https://www.maxmind.com/) for embedded db of MaxMind GeoIP2 database. Of course you can use [commercial version](https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database) for more accurate data.
 
 <div>
   <p align="center">

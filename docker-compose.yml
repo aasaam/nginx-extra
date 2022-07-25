@@ -6,3 +6,19 @@ services:
     container_name: nginx-extra
     hostname: nginx-extra
     network_mode: host
+    environment:
+      - ASM_NGX_EXTRA_MODULE_HTTP_ENCRYPTED_SESSION_COMMENT=
+      - ASM_NGX_EXTRA_MODULE_NCHAN_COMMENT=
+      - ASM_NGX_EXTRA_SSL_PROFILE=intermediate
+      - ASM_NGX_EXTRA_ERROR_LOG_LEVEL=debug
+    volumes:
+      # http
+      - ./conf.d/http:/conf.d/http:ro
+      # stream
+      - ./conf.d/stream:/conf.d/stream:ro
+
+      - ./nginx/.defaults/cert:/.defaults/cert
+      - ./nginx/.defaults/http:/.defaults/http
+      - ./nginx/.defaults/ssl:/.defaults/ssl
+      - ./nginx/.defaults/default_server.conf:/.defaults/default_server.conf
+      - ./nginx/template/nginx.conf:/template/nginx.conf

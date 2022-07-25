@@ -1,0 +1,22 @@
+{
+  "signing": {
+    "default": {
+      "expiry": "17520h"
+    },
+    "profiles": {
+      "server": {
+        "expiry": "8640h",
+        "key": {
+          "algo": "ecdsa",
+          "size": 256
+        },
+        "usages": [
+          "signing",
+          "digital signing",
+          "key encipherment",
+          "server auth"
+        ]
+      }
+    }
+  }
+}

@@ -36,9 +36,10 @@ jobs:
 
       - shell: bash
         run: |
-          sudo apt install jq curl -y
+          sudo apt install jq curl golang-cfssl -y
           make
           find nginx -type f -name '.gitignore' -delete
+          find nginx/.defaults/cert -type f -name '*.json' -delete
 
           docker build -t aasaam/nginx-extra .
           docker image inspect aasaam/nginx-extra:latest

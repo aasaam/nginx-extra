@@ -19,7 +19,9 @@ ENV ASM_NGX_EXTRA_PROXY_CACHE_FAST_COMMENT="#"
 ENV ASM_NGX_EXTRA_PROXY_CACHE_SLOW_COMMENT="#"
 ENV ASM_NGX_EXTRA_SSL_PROFILE="intermediate"
 ENV ASM_NGX_EXTRA_MONITORING_PORT="8127"
-ENV ASM_NGX_EXTRA_DEFAULT_HOST_COMMENT=""
+ENV ASM_NGX_EXTRA_CLIENT_BODY_BUFFER_SIZE="256k"
+ENV ASM_NGX_EXTRA_CLIENT_HEADER_BUFFER_SIZE="2k"
+ENV ASM_NGX_EXTRA_LARGE_CLIENT_HEADER_BUFFERS="4 1k"
 
 ENV ASM_NGX_EXTRA_MODULE_HTTP_ENCRYPTED_SESSION_COMMENT="#"
 ENV ASM_NGX_EXTRA_MODULE_NCHAN_COMMENT="#"
@@ -35,19 +37,21 @@ RUN apk add --no-cache \
   ca-certificates \
   gettext \
   nginx \
+  nginx-mod-devel-kit \
   nginx-mod-http-brotli \
   nginx-mod-http-echo \
   nginx-mod-http-encrypted-session \
   nginx-mod-http-geoip2 \
   nginx-mod-http-headers-more \
+  nginx-mod-http-nchan \
   nginx-mod-http-set-misc \
   nginx-mod-stream \
   nginx-mod-stream-geoip2 \
   && rm -rf /usr/share/nginx \
   && rm -rf /etc/logrotate.d/nginx \
   && rm -rf /etc/nginx \
-  && mkdir /stream.d \
-  && mkdir /http.d \
+  && mkdir /conf.d/stream \
+  && mkdir /conf.d/http \
   && mkdir /etc/nginx \
   && chmod +x /entrypoint.sh \
   && nginx -V

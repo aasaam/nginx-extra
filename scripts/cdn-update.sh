@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 CONFIG_DIR="./nginx/.defaults/cdn"
 

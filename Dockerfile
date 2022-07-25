@@ -50,8 +50,8 @@ RUN apk add --no-cache \
   && rm -rf /usr/share/nginx \
   && rm -rf /etc/logrotate.d/nginx \
   && rm -rf /etc/nginx \
-  && mkdir /conf.d/stream \
-  && mkdir /conf.d/http \
+  && mkdir -p /conf.d/stream \
+  && mkdir -p /conf.d/http \
   && mkdir /etc/nginx \
   && chmod +x /entrypoint.sh \
   && nginx -V

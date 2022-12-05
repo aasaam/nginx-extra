@@ -15,7 +15,7 @@ done
 
 ARVANCLOUD_REALIP="${CONFIG_DIR}/set_real_ip_from.arvancloud.conf"
 ARVANCLOUD_ALLOW="${CONFIG_DIR}/allow.arvancloud.conf"
-ARVANCLOUD_IPS="https://www.arvancloud.com/fa/ips.txt"
+ARVANCLOUD_IPS="https://www.arvancloud.ir/fa/ips.txt"
 echo "# autmatic generate cloudflare ips $ARVANCLOUD_IPS [$(date)]" > $ARVANCLOUD_REALIP
 cat $ARVANCLOUD_REALIP > $ARVANCLOUD_ALLOW
 curl -Ls $ARVANCLOUD_IPS | while read line; do

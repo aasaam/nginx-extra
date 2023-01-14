@@ -40,6 +40,7 @@ RUN apk add --no-cache \
   nginx-mod-http-encrypted-session \
   nginx-mod-http-geoip2 \
   nginx-mod-http-headers-more \
+  nginx-mod-http-naxsi \
   nginx-mod-http-nchan \
   nginx-mod-http-set-misc \
   nginx-mod-stream \

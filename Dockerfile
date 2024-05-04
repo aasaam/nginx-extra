@@ -15,7 +15,7 @@ ENV ASM_NGX_EXTRA_ACCESS_LOG_COMMENT="" \
   ASM_NGX_EXTRA_PROXY_CACHE_SLOW_SIZE="4096m" \
   ASM_NGX_EXTRA_PROXY_CACHE_FAST_COMMENT="" \
   ASM_NGX_EXTRA_PROXY_CACHE_SLOW_COMMENT="" \
-  ASM_NGX_EXTRA_SSL_PROFILE="intermediate" \
+  ASM_NGX_EXTRA_SSL_PROFILE="modern" \
   ASM_NGX_EXTRA_MONITORING_PORT="8127" \
   ASM_NGX_EXTRA_CLIENT_BODY_BUFFER_SIZE="256k" \
   ASM_NGX_EXTRA_CLIENT_HEADER_BUFFER_SIZE="2k" \
@@ -33,6 +33,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN apk add --no-cache \
   ca-certificates \
   gettext \
+  tzdata \
   nginx \
   nginx-mod-devel-kit \
   nginx-mod-http-brotli \

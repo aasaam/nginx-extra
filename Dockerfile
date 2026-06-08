@@ -26,10 +26,9 @@ ENV ASM_NGX_EXTRA_ACCESS_LOG_COMMENT="" \
   ASM_NGX_EXTRA_MODULE_NCHAN_COMMENT="#" \
   ASM_NGX_EXTRA_STREAM_COMMENT="#"
 
-COPY nginx/.defaults /.defaults
-COPY nginx/template /template
-COPY entrypoint.sh /entrypoint.sh
-
+# Install nginx (latest on alpine:edge) and modules, then prepare runtime dirs.
+# Kept as the first build step so this heavy package layer stays cached across
+# edits to the templates / entrypoint that are copied afterwards.
 RUN apk add --no-cache \
   ca-certificates \
   gettext \
@@ -46,18 +45,15 @@ RUN apk add --no-cache \
   nginx-mod-http-set-misc \
   nginx-mod-stream \
   nginx-mod-stream-geoip2 \
-  && rm -rf /usr/share/nginx \
-  && rm -rf /etc/logrotate.d/nginx \
-  && rm -rf /etc/nginx \
-  && mkdir -p /conf.d/stream \
-  && mkdir -p /conf.d/http \
-  && mkdir -p /cache-fast \
-  && chmod 777 /cache-fast \
-  && mkdir -p /cache-slow \
-  && chmod 777 /cache-slow \
-  && mkdir /etc/nginx \
-  && chmod +x /entrypoint.sh \
+  && rm -rf /usr/share/nginx /etc/logrotate.d/nginx /etc/nginx \
+  && mkdir -p /conf.d/stream /conf.d/http /etc/nginx /cache-fast /cache-slow \
+  && chmod 777 /cache-fast /cache-slow \
   && nginx -V
+
+# Copy in order of change frequency (least -> most) to maximize layer caching.
+COPY --chmod=755 entrypoint.sh /entrypoint.sh
+COPY nginx/.defaults /.defaults
+COPY nginx/template /template
 
 EXPOSE 80/tcp 443/tcp
 

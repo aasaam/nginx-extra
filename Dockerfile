@@ -24,6 +24,8 @@ ENV ASM_NGX_EXTRA_ACCESS_LOG_COMMENT="" \
   ASM_NGX_EXTRA_LARGE_CLIENT_HEADER_BUFFERS="4 1k" \
   ASM_NGX_EXTRA_MODULE_HTTP_ENCRYPTED_SESSION_COMMENT="#" \
   ASM_NGX_EXTRA_MODULE_NCHAN_COMMENT="#" \
+  ASM_NGX_EXTRA_MODULE_CACHE_PURGE_COMMENT="#" \
+  ASM_NGX_EXTRA_MODULE_SLOWFS_CACHE_COMMENT="#" \
   ASM_NGX_EXTRA_STREAM_COMMENT="#"
 
 # Install nginx (latest on alpine:edge) and modules, then prepare runtime dirs.
@@ -36,6 +38,8 @@ RUN apk add --no-cache \
   nginx \
   nginx-mod-devel-kit \
   nginx-mod-http-brotli \
+  nginx-mod-http-cache-purge \
+  nginx-mod-http-slowfs-cache \
   nginx-mod-http-echo \
   nginx-mod-http-encrypted-session \
   nginx-mod-http-geoip2 \
